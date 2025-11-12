@@ -234,11 +234,11 @@ public class TeleOpControlLinearOpMode extends LinearOpMode {
             rightBackPower  = gamepad1.b ? 1.0 : 0.0;  // B gamepad */
 
             // INTAKE CODE
-            if (intakeInButton) {
-                intakePower = INTAKE_IN_POWER;
-            } else if (intakeOutButton) {
-                intakePower = INTAKE_OUT_POWER;
-            } else {
+            // Uses the XOR operator to determine if only one button is pressed.
+            if(intakeInButton ^ intakeOutButton){
+                intakePower = intakeInButton ? INTAKE_IN_POWER : INTAKE_OUT_POWER;
+            }
+            else{
                 intakePower = INTAKE_OFF_POWER;
             }
 
